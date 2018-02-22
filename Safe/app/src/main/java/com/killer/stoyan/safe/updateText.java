@@ -6,24 +6,22 @@ import android.widget.TextView;
  * Created by studente on 15/02/18.
  */
 
-public class updateText extends Thread{
+public class updateText extends Thread {
     TextView tv;
     String[] tryes;
 
-    Thread thr= new Thread(update);
+    updateText(TextView tv, String[] tryes) {
+        this.tv = tv;
+        this.tryes = tryes;
+    }
 
-    Runnable update = new Runnable() {
+    public void run() {
+        tv.setText(tryes[].);
+    }
+}
 
-    @Override
-        public void run() {
-            try {
-                tv.setText(tryes.toString());
-            }
-            catch(InterruptedException e){
-                System.out.println(clock + "has ended");
-                return;
-            }
+    public static void main(String args[]) {
+        (new HelloThread()).start();
+    }
 
-        }
-    };
 }

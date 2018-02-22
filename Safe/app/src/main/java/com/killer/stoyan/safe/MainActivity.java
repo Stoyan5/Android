@@ -1,8 +1,8 @@
 package com.killer.stoyan.safe;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,11 +11,15 @@ public class MainActivity extends AppCompatActivity {
     private final Integer[] PIN=new Integer[4];
     private Integer[] tryes;
     private int sentinel;
+    private Runnable textU;
     private TextView tv;
+
+    Thread thr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Thread
+        Runnable textU =new Runnable(com.killer.stoyan.safe.textU());
+        thr=new Thread(textU);
         PIN[0]=1;
         PIN[1]=2;
         PIN[2]=3;
@@ -32,22 +36,26 @@ public class MainActivity extends AppCompatActivity {
             case R.id.button0:
                 tryes[sentinel]=0;
                 sentinel++;
-                tv.setText(tryes.toString());
+                thr.run();
+                //tv.setText(tryes.toString());
                 if(check()){}//passare al prossimoactivity
             case R.id.button1:
                 tryes[sentinel]=1;
                 sentinel++;
-                tv.setText(tryes.toString());
+                thr.run();
+                //tv.setText(tryes.toString());
                 if(check()){}//passare al prossimoactivity
             case R.id.button2:
                 tryes[sentinel]=2;
                 sentinel++;
-                tv.setText(tryes.toString());
+                thr.run();
+                //tv.setText(tryes.toString());
                 if(check()){}//passare al prossimoactivity
             case R.id.button3:
                 tryes[sentinel]=3;
                 sentinel++;
-                tv.setText(tryes.toString());
+                thr.run();
+                //tv.setText(tryes.toString());
                 if(check()){}//passare al prossimoactivity
             case R.id.button4:
                 tryes[sentinel]=4;
@@ -99,3 +107,4 @@ public class MainActivity extends AppCompatActivity {
     }
     //aggiungere se PIN == tryes passare al activity aperto
 }
+
