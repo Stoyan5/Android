@@ -6,11 +6,12 @@
     android:layout_height="match_parent">
 
     <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Player VS Player"
         android:id="@+id/oneVsOne"
-        android:layout_marginTop="100dp"
+        android:layout_width="287dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:onClick="PVPGame" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="99dp"
+        android:onClick="Play"
+        android:text="Play" />
 </RelativeLayout>

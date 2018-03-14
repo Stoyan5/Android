@@ -14,6 +14,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void PVPGame(View v){
-        startActivity(new Intent(this, PVPGame.class));
+        startActivity(new Intent(this, Play.class));
     }
 }
