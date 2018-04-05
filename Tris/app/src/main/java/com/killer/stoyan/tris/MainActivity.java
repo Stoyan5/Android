@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        btn=findViewById(R.id.button);
+        btn=(Button) view;
         //da aggiungere blocco bottone dopo schiacciato
         if(player==true)btn.setText("X");
         else btn.setText("O");
