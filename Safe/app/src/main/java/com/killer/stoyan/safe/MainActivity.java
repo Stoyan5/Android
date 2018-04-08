@@ -8,102 +8,110 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final Integer[] PIN=new Integer[4];
-    private Integer[] tryes;
-    private int sentinel;
-    private Runnable textU;
+    private String PIN;
+    private String tryes;
+    //private int sentinel;
+   // private Runnable textU;
     private TextView tv;
 
-    Thread thr;
+    //Thread thr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Runnable textU =new Runnable(com.killer.stoyan.safe.textU());
+        PIN="1234";
+        tryes="";
+ /*       Runnable textU =new Runnable(com.killer.stoyan.safe.textU());
         thr=new Thread(textU);
         PIN[0]=1;
         PIN[1]=2;
         PIN[2]=3;
         PIN[3]=4;
-        sentinel=0;
+        sentinel=0;*/
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv =findViewById(R.id.textView);
     }
 
     public void onClick(View view) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
+        Intent i = new Intent(this,InActivity.class);
         switch(view.getId()){
             case R.id.button0:
-                tryes[sentinel]=0;
-                sentinel++;
-                thr.run();
-                //tv.setText(tryes.toString());
-                if(check()){}//passare al prossimoactivity
+                tryes += "0";
+                //tryes[sentinel]=0;
+                //sentinel++;
+                //thr.run();
+                break;
             case R.id.button1:
-                tryes[sentinel]=1;
-                sentinel++;
-                thr.run();
-                //tv.setText(tryes.toString());
-                if(check()){}//passare al prossimoactivity
+                tryes += "1";
+                //tryes[sentinel]=1;
+                //sentinel++;
+                //thr.run();
+                break;
             case R.id.button2:
-                tryes[sentinel]=2;
-                sentinel++;
-                thr.run();
-                //tv.setText(tryes.toString());
-                if(check()){}//passare al prossimoactivity
+                tryes += "2";
+                //tryes[sentinel]=2;
+                //sentinel++;
+                //thr.run();
+                break;
             case R.id.button3:
-                tryes[sentinel]=3;
-                sentinel++;
-                thr.run();
-                //tv.setText(tryes.toString());
-                if(check()){}//passare al prossimoactivity
+                tryes += "3";
+                //tryes[sentinel]=3;
+                //sentinel++;
+                //thr.run();
+                break;
             case R.id.button4:
-                tryes[sentinel]=4;
-                sentinel++;
-                tv.setText(tryes.toString());
-                if(check()){}//passare al prossimoactivity
+                tryes += "4";
+//                tryes[sentinel]=4;
+//                sentinel++;
+                break;
             case R.id.button5:
-                tryes[sentinel]=5;
-                sentinel++;
-                tv.setText(tryes.toString());
-                if(check()){}//passare al prossimoactivity
+                tryes += "5";
+//                tryes[sentinel]=5;
+//                sentinel++;
+                break;
             case R.id.button6:
-                tryes[sentinel]=6;
-                sentinel++;
-                tv.setText(tryes.toString());
-                if(check()){}//passare al prossimoactivity
+                tryes += "6";
+//                tryes[sentinel]=6;
+//                sentinel++;
+                break;
             case R.id.button7:
-                tryes[sentinel]=7;
-                sentinel++;
-                tv.setText(tryes.toString());
-                if(check()){}//passare al prossimoactivity
+                tryes += "7";
+//                tryes[sentinel]=7;
+//                sentinel++;
             case R.id.button8:
-                tryes[sentinel]=8;
-                sentinel++;
-                tv.setText(tryes.toString());
-                if(check()){}//passare al prossimoactivity
+                tryes += "8";
+//                tryes[sentinel]=8;
+//                sentinel++;
+                break;
             case R.id.button9:
-                tryes[sentinel]=9;
-                sentinel++;
-                tv.setText(tryes.toString());
-                if(check()){}//passare al prossimoactivity
+                tryes += "9";
+//                tryes[sentinel]=9;
+//                sentinel++;
+                break;
             case R.id.delete:
-                tryes[sentinel]=null;
-                sentinel--;
-                tv.setText(tryes.toString());
+                if(tryes.length()!=0) {
+                    tryes = tryes.substring(0, tryes.length() - 1);
+//                tryes[sentinel]=null;
+//                sentinel--;
+                }
+                break;
         }
-        startActivity(i);
+        tv.setText(tryes);
+        if(check()){startActivity(i);}
     }
     private boolean check(){
-        boolean isRight=false;
-        for (int i=0;i<4;i++){
+        //boolean isRight=false;
+        return tryes.equals(PIN);
+
+   /*    for (int i=0;i<4;i++){
             if(PIN[i]==tryes[i])isRight=true;
             else{
                 isRight=false;
                 break;
             }
-        }
-        return isRight;
+        }*/
+        //return isRight;
     }
     //aggiungere se PIN == tryes passare al activity aperto
 }
