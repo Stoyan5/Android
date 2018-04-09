@@ -9,6 +9,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private int closed;
     private TextView textView;
     private Button btn;
     private Button resetButton;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         }
         textView.setText("");
         player=1;
+        closed=0;
     }
 
     class onClickSchisa implements View.OnClickListener {
@@ -138,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 player = 1;
             }
+            closed++;
             if(checkWin()==1)textView.setText("X won!");
             else if(checkWin()==-1)textView.setText("O won!");
         }
