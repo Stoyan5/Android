@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
             closed++;
             if(checkWin()==1)textView.setText("X won!");
             else if(checkWin()==-1)textView.setText("O won!");
+            else if(closed==9)textView.setText("Draw");
         }
     }
 }
