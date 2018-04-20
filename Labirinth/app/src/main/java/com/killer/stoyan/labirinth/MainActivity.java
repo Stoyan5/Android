@@ -6,25 +6,104 @@ import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
+
+import com.killer.stoyan.labirinth.E;
+import com.killer.stoyan.labirinth.FragmentRoom;
+import com.killer.stoyan.labirinth.IB;
+import com.killer.stoyan.labirinth.R;
+import com.killer.stoyan.labirinth.RB;
+import com.killer.stoyan.labirinth.RBL;
+import com.killer.stoyan.labirinth.Right;
+import com.killer.stoyan.labirinth.Room;
 
 public class MainActivity extends AppCompatActivity {
 
-    float x1,x2;
-    final static float MIN_DISTANCE = 150.0f;
+    int currentX;
+    int currentY;
+    Room[][] map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FragmentRoom f1 = new FragmentRoom();
 
-        // portrait mode
-        if(findViewById(R.id.fragment) != null){
-            Fragment1 f1 = new Fragment1();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment, f1);
-            ft.commit();
-        }
+
+        /*map MISSING TBL class not used
+                E,E,E,E,E,IB,E,E,E,E,E,E;
+                RB,RBL,RL,L,RB,TRBL,RBL,RL,RL,RBL,BL,E;
+                TB,TB,RB,RL,BL,TB,TB,Right,BL,TB,TB,E;
+                T,TRL,TL,RB,RL,TRL,TRL,BL,TR,TL,TB,E;
+                RB,TRL,TRBL,TRL,RL,RBL,BL,TR,RL,RL,TLE;
+                TB,B,TB,RB,L,TB,TR,RL,BL,RB,L,E;
+                T,TRL,TRBL,TRBL,RL,TL,B,Right,TL,TB,RB,FL;
+                RB,TL,TB,TB,RB,BL,TR,RBL,RL,TL,TB,E;
+                TRB,RL,TRL,TRBL,TRL,TL,B,TR,RL,RBL,TL,E;
+                TB,RB,RL,TRBL,RL,BL,TRB,TRL,RL,TBL,B,E;
+                TB,T,E,TB,E,TRB,TRL,TL,B,T,TB,E;
+                TR,RL,RL,TRL,L,TR,RL,RL,TRL,RL,TL,E;
+         */
+        //create map
+        Room[][] map=new Room[12][12];
+        //first row...
+        map[1][1]= new E();
+        map[1][2]= new E();
+        map[1][3]= new E();
+        map[1][4]= new E();
+        map[1][5]= new IB();
+        map[1][6]= new E();
+        map[1][7]= new E();
+        map[1][8]= new E();
+        map[1][9]= new E();
+        map[1][10]= new E();
+        map[1][11]= new E();
+        map[1][12]= new E();
+
+        map[2][1]= new RB();
+        map[2][2]= new RBL();
+        map[2][3]= new RL();
+        map[2][4]= new L();
+        map[2][5]= new RB();
+        map[2][6]= new TRBL();
+        map[2][7]= new RBL();
+        map[2][8]= new RL();
+        map[2][9]= new RL();
+        map[2][10]= new RBL();
+        map[2][11]= new BL();
+        map[2][12]= new E();
+
+        map[2][1]= new TB();
+        map[2][2]= new TB();
+        map[2][3]= new RB();
+        map[2][4]= new RL();
+        map[2][5]= new BL();
+        map[2][6]= new TB();
+        map[2][7]= new TB();
+        map[2][8]= new Right();
+        map[2][9]= new BL();
+        map[2][10]= new TB();
+        map[2][11]= new TB();
+        map[2][12]= new E();
+
+        map[2][1]= new RB();
+        map[2][2]= new RBL();
+        map[2][3]= new RL();
+        map[2][4]= new L();
+        map[2][5]= new RB();
+        map[2][6]= new TRBL();
+        map[2][7]= new RBL();
+        map[2][8]= new RL();
+        map[2][9]= new RL();
+        map[2][10]= new RBL();
+        map[2][11]= new BL();
+        map[2][12]= new E();
+
+
+        currentX=5;
+        currentY=1;
+        new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]);
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -56,27 +135,40 @@ public class MainActivity extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
-    public void changeFragment() {
-        // act only in portrait mode
-        if(findViewById(R.id.fragment) != null){
-            FragmentManager fm = getFragmentManager();
-            Fragment nextFragment = null;
-            Fragment currentFragment = fm.findFragmentById(R.id.fragment);
-            if (currentFragment instanceof Fragment1) {
-                nextFragment = new Fragment2();
-            } else {
-                nextFragment = new Fragment1();
-            }
-
-            FragmentTransaction ft = fm.beginTransaction();
-            // (enter, exit)
-            ft.setCustomAnimations(R.animator.slide_linear_left, R.animator.slide_linear_right);
-            // ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-            ft.replace(R.id.fragment, nextFragment);
-            ft.commit();
-        } else {
-            Toast.makeText(this, "LANDSCAPE", Toast.LENGTH_SHORT).show ();
+    public void prova(View view){
+        switch(view.getId()){
+            case R.id.left:
+                if(map[currentY][currentX].hasRight()) {
+                    currentX=currentY+1;
+                    FragmentRoom f1 = new FragmentRoom();
+                    new Thread(() -> runOnUiThread(() -> f1.piazzaMuri(l.stanzaCorrente))).start();
+                }
+                break;
+            case R.id.right:
+                if(map[currentY][currentX].hasLeft()) {
+                    l.stanzaCorrente= l.stanzaCorrente.getSinistra();
+                    FragmentRoom f1 = new FragmentRoom();
+                    new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]).start());
+                }
+                break;
+            case R.id.down:
+                if(map[currentY][currentX].hasBottom()) {
+                    l.stanzaCorrente= l.stanzaCorrente.getSotto();
+                    FragmentRoom f1 = new FragmentRoom();
+                    new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]);
+                }
+                break;
+            case R.id.up:
+                if(map[currentY][currentX].hasTop()) {
+                    l.stanzaCorrente= l.stanzaCorrente.getSopra();
+                    FragmentRoom f1 = new FragmentRoom();
+                    new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]);
+                }
+                break;
         }
-
+        l.stanzaCorrente.isPlayerHere=true;
+        l.stanzaCorrente.win();
     }
+
+
 }
