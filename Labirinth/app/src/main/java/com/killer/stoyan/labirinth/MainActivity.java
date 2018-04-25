@@ -1,4 +1,4 @@
-package com.killer.stoyan.labirinth.;
+package com.killer.stoyan.labirinth;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -87,87 +87,95 @@ public class MainActivity extends AppCompatActivity {
         map[2][11]= new TB();
         map[2][12]= new E();
 
-        map[2][1]= new RB();
-        map[2][2]= new RBL();
-        map[2][3]= new RL();
-        map[2][4]= new L();
-        map[2][5]= new RB();
-        map[2][6]= new TRBL();
-        map[2][7]= new RBL();
-        map[2][8]= new RL();
-        map[2][9]= new RL();
-        map[2][10]= new RBL();
-        map[2][11]= new BL();
+        map[2][1]= new T();
+        map[2][2]= new TRL();
+        map[2][3]= new TL();
+        map[2][4]= new RB();
+        map[2][5]= new RL();
+        map[2][6]= new TRL();
+        map[2][7]= new TRL();
+        map[2][8]= new BL();
+        map[2][9]= new TR();
+        map[2][10]= new TL();
+        map[2][11]= new TB();
         map[2][12]= new E();
 
+        map[2][1]= new RB();
+        map[2][2]= new TRL();
+        map[2][3]= new TRBL();
+        map[2][4]= new TRL();
+        map[2][5]= new RL();
+        map[2][6]= new RBL();
+        map[2][7]= new BL();
+        map[2][8]= new TR();
+        map[2][9]= new RL();
+        map[2][10]= new RL();
+        map[2][11]= new TL();
+        map[2][12]= new E();
+
+        map[2][1]= new TB();
+        map[2][2]= new B();
+        map[2][3]= new TB();
+        map[2][4]= new RB();
+        map[2][5]= new L();
+        map[2][6]= new TB();
+        map[2][7]= new TR();
+        map[2][8]= new RL();
+        map[2][9]= new BL();
+        map[2][10]= new RB();
+        map[2][11]= new L();
+        map[2][12]= new E();
+
+        map[2][1]= new T();
+        map[2][2]= new TRL();
+        map[2][3]= new TRBL();
+        map[2][4]= new TRBL();
+        map[2][5]= new RL();
+        map[2][6]= new TL();
+        map[2][7]= new B();
+        map[2][8]= new Right();
+        map[2][9]= new TL();
+        map[2][10]= new TB();
+        map[2][11]= new RB();
+        map[2][12]= new FL();
 
         currentX=5;
         currentY=1;
-        new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]);
-    }
-
-    public boolean onTouchEvent(MotionEvent event) {
-
-        switch(event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                x1 = event.getX();
-                break;
-            case MotionEvent.ACTION_UP:
-                x2 = event.getX();
-                float deltaX = x2 - x1;
-
-                if (Math.abs(deltaX) > MIN_DISTANCE) {
-                    // Left to Right swipe action
-                    if (x2 > x1) {
-                        changeFragment();
-                    }
-
-                    // Right to left swipe action
-                    else {
-                        Toast.makeText(this, "SWIPE", Toast.LENGTH_SHORT).show ();
-                    }
-                }
-                else {
-                    Toast.makeText(this, "TAP", Toast.LENGTH_SHORT).show ();
-                }
-                break;
-        }
-        return super.onTouchEvent(event);
+        new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]))).start();
     }
 
     public void prova(View view){
         switch(view.getId()){
             case R.id.left:
                 if(map[currentY][currentX].hasRight()) {
-                    currentX=currentY+1;
+                    currentX=currentX+1;
                     FragmentRoom f1 = new FragmentRoom();
-                    new Thread(() -> runOnUiThread(() -> f1.piazzaMuri(l.stanzaCorrente))).start();
+                    new Thread(() -> runOnUiThread(() -> f1.showRoom(map[currentY][currentX]))).start();
                 }
                 break;
             case R.id.right:
                 if(map[currentY][currentX].hasLeft()) {
-                    l.stanzaCorrente= l.stanzaCorrente.getSinistra();
+                    currentX=currentX-1;
                     FragmentRoom f1 = new FragmentRoom();
-                    new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]).start());
+                    new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]))).start();
                 }
                 break;
             case R.id.down:
                 if(map[currentY][currentX].hasBottom()) {
-                    l.stanzaCorrente= l.stanzaCorrente.getSotto();
+                    currentY=currentY+1;
                     FragmentRoom f1 = new FragmentRoom();
-                    new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]);
+                    new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]))).start();
                 }
                 break;
             case R.id.up:
                 if(map[currentY][currentX].hasTop()) {
-                    l.stanzaCorrente= l.stanzaCorrente.getSopra();
+                    currentY=currentY-1;
                     FragmentRoom f1 = new FragmentRoom();
-                    new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]);
+                    new Thread(()->runOnUiThread(() -> f1.showRoom(map[currentY][currentX]))).start();
                 }
                 break;
         }
-        l.stanzaCorrente.isPlayerHere=true;
-        l.stanzaCorrente.win();
+        if(currentX==12&&currentY==7) System.out.println("you won!");
     }
 
 
