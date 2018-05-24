@@ -16,16 +16,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
     />
+
     <ImageView
         android:id="@+id/T"
         android:layout_width="100dp"
         android:layout_height="66dp"
         android:layout_gravity="center|right"
+        android:layout_marginLeft="140dp"
+        android:layout_marginStart="140dp"
         android:background="@color/black"
         android:tag="0"
-
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="106dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.238" />
 
     <ImageView
         android:id="@+id/B"
@@ -34,9 +38,11 @@
         android:layout_gravity="center|top"
         android:background="@color/black"
         android:tag="1"
-
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="353dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.771" />
 
     <ImageView
         android:id="@+id/L"
@@ -45,9 +51,12 @@
         android:layout_gravity="center|left"
         android:background="@color/black"
         android:tag="2"
-
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="205dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
 
     <ImageView
         android:id="@+id/Right"
@@ -56,7 +65,11 @@
         android:layout_gravity="center|bottom"
         android:background="@color/black"
         android:tag="3"
-        tools:layout_editor_absoluteX="280dp"
-        tools:layout_editor_absoluteY="205dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

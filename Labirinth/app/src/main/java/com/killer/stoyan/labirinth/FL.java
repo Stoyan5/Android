@@ -4,7 +4,4 @@ public class FL extends Room{
     public FL(){
         new Room(false,false,false,true,true,false);
     }
-    public boolean hasRight(){
-        return false;
-    }
 }

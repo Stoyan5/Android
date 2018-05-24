@@ -22,7 +22,6 @@ public class Room {
     public boolean hasRight(){
         return right;
     }
-
     public boolean hasBottom(){
         return bottom;
     }
